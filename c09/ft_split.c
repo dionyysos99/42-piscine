@@ -1,5 +1,5 @@
 #include <stdlib.h>
-//bu fonksiyonda bir char karakteri charsetimizdeki bir karakterle karşılaştırıyoruz
+//Belirtilen karakterin, karakter setinde olup olmadığını kontrol eder.
 //eşit ise 1 eşit değilse 0 çıktısı veriyor
 int	is_charset(char c, char *charset)
 {
@@ -11,20 +11,20 @@ int	is_charset(char c, char *charset)
 	}
 	return 0;
 }
-//bu fonksiyonda kelimeleri is_charset fonksiyonunun sonuçlarına göre buluyoruz
+//Verilen stringdeki kelimelerin sayısını, karakter seti ile karşılaştırarak hesaplar.
 int word_count(char *str, char *charset)
 {
 	int	count;
 	count = 0;
 	while (*str) 
-	{
+	{    // Eğer mevcut karakter charset'te yoksa ve bir sonraki karakter charset'te veya son karakter ise
 		if (!is_charset(*str, charset) && (is_charset(*(str + 1), charset) || *(str + 1) == '\0'))
-			count++;
+			count++; // Kelime sayısını artırıyoruz
 		str++;
 	}
 	return (count);
 }
-//bu fonksiyonda bir stringin n kadar karakterini belleğe kopyalayan bir fonksiyon yazıyoruz
+//Verilen stringin ilk n karakterini dinamik olarak belleğe kopyalar.
 char *ft_strndup(char *str,unsigned int n)
 {
 	unsigned int	i;
@@ -49,17 +49,17 @@ char *ft_strndup(char *str,unsigned int n)
 		i++;
 	}
 	copiedstr[i] = '\0';
-    //burada bellekteki açılmış yerdeki diziye istenilen veri aktarılıyor ve sonlandırılıyor	
+    //bellekte açılan yerdeki diziye istenilen karakterleri kopyalıyoruz.	
 	return (copiedstr);
 }
-//ana fonksiyonumuz burada çalışıyor!
+//Verilen stringi, karakter setine göre ayırarak kelimelerden oluşan bir dizi döndürür.
 char **ft_split(char *str, char *charset)
 {
-	char	**result;
-	int		i;
-	int		k;
-	int		start;
-
+	char	**result; // Sonuç dizisi, kelimeleri tutmak için
+	int		i; // Geçici indeks, str dizisinde gezinmek için
+	int		k; // Sonuç dizisinde kelime sayısını takip etmek için
+	int		start; // Kelimenin başlangıç indeksini tutmak için
+	// Kelimelerin sayısını belirleyip sonuç dizisi için yeterli bellek ayırıyoruz
 	result = (char *)malloc((word_count(str, charset) + 1) * sizeof(char *));
 	i = 0;
 	k = 0;
@@ -67,16 +67,16 @@ char **ft_split(char *str, char *charset)
 	{
 		if (!is_charset(str[i], charset))
 		{
-			start = i;
+			start = i; // Kelimenin başlangıcını kaydediyoruz
 			while (str[i] && !is_charset(str[i], charset))
 				i++;
-			result[k] = ft_strndup(str + start, i - start);
+			result[k] = ft_strndup(str + start, i - start); // Kelimeyi kopyalayıp sonuç dizisine ekliyoruz
 			if (!result[k])
 				return (NULL);
-			k++;
+			k++; // Sonuç dizisindeki kelime sayısını artırıyoruz
 		}
 		else
-			i++;
+			i++; // Eğer mevcut karakter charset'teyse, bir sonraki karaktere geçiyoruz
 	}
 	result[k] = NULL;
 	return (result);
