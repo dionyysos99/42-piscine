@@ -16,11 +16,11 @@ void str_cat(char *str,char *dest)
 	int j;
 	i=0;
 	j=0;
-	while (str[i])
+	while (str[i]!='\0')
 	{
 		i++;
 	}
-	while(dest[j])
+	while(dest[j]!='\0')
 	{
 		str[i]=dest[j];
 		i++;
@@ -51,7 +51,6 @@ char *ft_strjoin(int size, char **strs,char *sep)
 		if(i < (size -1))
 		{
 			str_cat(src,sep);
-			i++;
 		}
 		i++;		
 	}
@@ -59,10 +58,11 @@ char *ft_strjoin(int size, char **strs,char *sep)
 }
 int main()
 {
-	char *str[]={"yusuf","metinoglu","31sever"};
-	char *sep=" ";
-	int size = len_gen(str)/sizeof(str[0]);
-	char *result=ft_strjoin(size,str,sep);
-	printf("%s",result);
-	free(result);
+	char *str[] = {"yusuf", "metinoglu", "31sever"};
+    char *sep = " ";
+    int size = sizeof(str) /sizeof(sep);
+
+    char *result = ft_strjoin(size, str, sep);
+    printf("%s\n", result);
+    free(result);
 }
