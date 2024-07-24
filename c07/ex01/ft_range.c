@@ -6,12 +6,12 @@
 /*   By: ymetinog <ymetinog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:31:32 by ymetinog          #+#    #+#             */
-/*   Updated: 2024/07/20 11:03:39 by ymetinog         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:45:43 by ymetinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
 int	*ft_range(int min, int max)
 {
 	int		*tab;
@@ -29,4 +29,24 @@ int	*ft_range(int min, int max)
 			tab[i] = min + i;
 		return (tab);
 	}
+}
+int main() {
+    int min = 5;
+    int max = 15;
+
+    int *result = ft_range(min, max);
+
+    if (result == NULL) {
+		char *str = NULL;
+		printf("%s\n", str);
+    }
+
+    printf("Generated array:\n");
+    for (int i = 0; i < max - min; ++i) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+
+    // Don't forget to free allocated memory
+    free(result);
 }

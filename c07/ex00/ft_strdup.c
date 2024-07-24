@@ -6,12 +6,12 @@
 /*   By: ymetinog <ymetinog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:24:15 by ymetinog          #+#    #+#             */
-/*   Updated: 2024/07/20 11:10:48 by ymetinog         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:43:52 by ymetinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
 int	str_len(char *src)
 {
 	int	i;
@@ -38,4 +38,11 @@ char	*ft_strdup(char *src)
 	}
 	result[i] = '\0';
 	return (result);
+}
+int main()
+{
+	char a[]="yusuf";
+	char *result=ft_strdup(a);
+	printf("%p,orjinal %p,bellekte :",&a,result);
+	
 }

@@ -6,12 +6,12 @@
 /*   By: ymetinog <ymetinog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 10:31:43 by ymetinog          #+#    #+#             */
-/*   Updated: 2024/07/20 11:04:49 by ymetinog         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:51:12 by ymetinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
 int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	*tab;
@@ -33,4 +33,12 @@ int	ft_ultimate_range(int **range, int min, int max)
 		*range = tab;
 		return (i);
 	}
+}
+int main()
+{
+	int *result;
+	int a=5;
+	int b=10;
+	int res=ft_ultimate_range(&result,a,b);
+	printf("%d : is result",res);
 }
